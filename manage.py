@@ -16,7 +16,7 @@ def Login(object):
     global stuInfo
     if(object == 'teacher'):
         return login.jwc_login(object)
-    else:
+    elif(object == 'student'):
         s=login.jwc_login(object) # 获取登录cookie
         stuInfo=getInfo.get_stuInfo(s)# 获取学生学籍信息
         return  stuInfo# 返回数据给前端
