@@ -63,6 +63,8 @@ def Query(database,object):
     enclosure = request.form['enclosure']
     if (database == 'students'):
         return query.query_stuInfo(object, enclosure)
+    elif(database == 'teachers'):
+        return query.query_teaInfo(object)
     elif (database == 'images'):
         return query.query_image(object, enclosure)
 if __name__ == '__main__':

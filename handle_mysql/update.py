@@ -9,7 +9,7 @@ def update_stuInfo(object,enclosure):
     id = request.form['id']
     if  (object == 'bedmaker'):
         bedmaker=request.form['bedmaker']
-        sql = "UPDATE %s" % enclosure+" SET bedmaker=%s  WHERE id=%s" % (bedmaker,id)
+        sql = "UPDATE %s" % enclosure+" SET bedmakerStatus=%s  WHERE id=%s" % (bedmaker,id)
     elif(object == 'phone'):
         phone=request.form['phone']
         sql = "UPDATE %s" % enclosure+ " SET phone=%s WHERE id=%s" % (phone, id)
