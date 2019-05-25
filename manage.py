@@ -3,23 +3,31 @@
 from flask import Flask,request
 import config
 import json
-from crawler import login, getInfo
+from crawler import jwcBind, getInfo
 from handle_mysql import insert,delete,update,query
 from handle_baidu_FaceIdentity import addUser,getAccessToken,identifyFace
+from handle_weixin import login
 app = Flask(__name__)
 app.config.from_object(config)
 
 stuInfo={}
+# 绑定接口
+@app.route("/dormitoryHelper/api/v1.0/school_bind/<object>", methods=['GET', 'POST'])
+def schoolBind(object):
+    global stuInfo
+    if(object == 'teacher'):
+        return jwcBind.jwc_bind(object)
+    elif(object == 'student'):
+        s = jwcBind.jwc_bind(object) # 获取登录cookie
+        stuInfo = getInfo.get_stuInfo(s)# 获取学生学籍信息
+        return  stuInfo# 返回数据给前端
 # 登录接口
 @app.route("/dormitoryHelper/api/v1.0/login/<object>", methods=['GET', 'POST'])
 def Login(object):
-    global stuInfo
     if(object == 'teacher'):
-        return login.jwc_login(object)
+        pass
     elif(object == 'student'):
-        s=login.jwc_login(object) # 获取登录cookie
-        stuInfo=getInfo.get_stuInfo(s)# 获取学生学籍信息
-        return  stuInfo# 返回数据给前端
+        return  login.getOpenID()# 返回数据给前端
 #人脸识别操作
 @app.route("/dormitoryHelper/api/v1.0/face_recognition/<object>", methods=['GET', 'POST'])
 def faceRecognition(object):
