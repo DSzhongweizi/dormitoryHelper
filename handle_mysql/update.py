@@ -16,6 +16,10 @@ def update_stuInfo(object,enclosure):
     elif(object == 'dormitory'):
         dormitory=request.form['dormitory']
         sql = "UPDATE %s" % enclosure + " SET dormitory=%s WHERE id=%s" % (dormitory, id)
+    elif (object == 'openid'):
+        session_key=request.form['session_key']
+        openid = request.form['openid']
+        sql = "UPDATE %s" % enclosure + " SET session_key='%s',openid='%s' WHERE id='%s'" % (session_key, openid, id)
     return assistFun(db,cursor,sql)
 #更新老师信息
 def update_teacherInfo(object):

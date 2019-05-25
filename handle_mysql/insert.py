@@ -11,9 +11,9 @@ def insert_stuInfo(stuInfo,object):
     if(object =='stuInfo'):
         enclosure=request.form['enclosure']
         # SQL 插入语句(id, name, academy, grade, major, class, campus, phone, address)
-        sql = "INSERT INTO %s" % enclosure + " VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s','%s')"%\
+        sql = "INSERT INTO %s" % enclosure + " VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s','%s','%s','%s')"%\
                 (stuInfo['id'],stuInfo['name'],stuInfo['academy'],stuInfo['grade'],stuInfo['major'],stuInfo['class'],
-                stuInfo['campus'],"","", 0, stuInfo['img'],0)
+                stuInfo['campus'],"","", 0, stuInfo['img'],0,"","")
     return assistFun(db, cursor, sql)
 def insert_teaInfo(object):
     db = pymysql.connect("148.70.98.130", "root", "00544", "teachers", charset='utf8')
