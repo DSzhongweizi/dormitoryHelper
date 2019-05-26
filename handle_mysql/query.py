@@ -5,7 +5,7 @@ from flask import  request,jsonify
 def query_stuInfo(object,enclosure):
     db = pymysql.connect("148.70.98.130", "root", "00544", "students", charset='utf8')
     cursor = db.cursor()
-    if(object == 'bedmaker'):
+    if(object == 'bedmakerStatus'):
         dormitory=request.form['dormitory']
         sql = "SELECT * FROM %s"%enclosure+" WHERE dormitory=%s" % dormitory
         try:

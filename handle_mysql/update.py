@@ -7,9 +7,9 @@ def update_stuInfo(object,enclosure):
     db = pymysql.connect("148.70.98.130", "root", "00544", "students", charset='utf8')
     cursor = db.cursor()
     id = request.form['id']
-    if  (object == 'bedmaker'):
-        bedmaker=request.form['bedmaker']
-        sql = "UPDATE %s" % enclosure+" SET bedmakerStatus=%s  WHERE id=%s" % (bedmaker,id)
+    if  (object == 'bedmakerStatus'):
+        bedmakerStatus=request.form['bedmakerStatus']
+        sql = "UPDATE %s" % enclosure+" SET bedmakerStatus=%s  WHERE id=%s" % (bedmakerStatus,id)
     elif(object == 'phone'):
         phone=request.form['phone']
         sql = "UPDATE %s" % enclosure+ " SET phone=%s WHERE id=%s" % (phone, id)
@@ -59,4 +59,4 @@ def assistFun(db,cursor,sql):
         db.rollback()
         print(e.args)
         db.close()
-        return  "flase"
+        return  "false"

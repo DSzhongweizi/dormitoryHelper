@@ -15,21 +15,16 @@ def get_stuInfo(s):
         info["major"] = msg.select(".profile-info-value")[8].text.strip()
         info["class"] = msg.select(".profile-info-value")[10].text.strip()
         info["campus"] = msg.select(".profile-info-value")[11].text.strip()
-
-    stuImg = s.get('http://zhjw.scu.edu.cn/student/rollInfo/img')
-    path = os.getcwd()
-    with open(path + "\img.png", "wb") as f:  # 保存的文件名 保存的方式（wb 二进制  w 字符串）
-        f.write(stuImg.content)
-    f.close()
-    with open(path + "\img.png", "rb") as f:  # 转为二进制格式
-        base64_data = base64.b64encode(f.read())  # 使用base64进行加密
-        # print(base64_data)
-        # file = open('1.txt', 'wt')  # 写成文本格式
-        # file.write(base64_data)
-        # file.close()
-        info['img'] = str(base64_data)[2:-3]#去掉前导二进制符号和最后面的两个等号，防止前端json.parse解析失败
     if(len(info)>0):
+        stuImg = s.get('http://zhjw.scu.edu.cn/student/rollInfo/img')
+        path = os.getcwd()
+        with open(path + "\img.png", "wb") as f:  # 保存的文件名 保存的方式（wb 二进制  w 字符串）
+            f.write(stuImg.content)
+        f.close()
+        with open(path + "\img.png", "rb") as f:  # 转为二进制格式
+            base64_data = base64.b64encode(f.read())  # 使用base64进行加密
+            info['img'] = str(base64_data)[2:-3]  # 去掉前导二进制符号和最后面的两个等号，防止前端json.parse解析失败
         return json.dumps(info,ensure_ascii=False),201
     else:
-        return "登录失败,请检查账号密码是否正确"
+        return "false"
 

@@ -9,7 +9,6 @@ from handle_baidu_FaceIdentity import addUser,getAccessToken,identifyFace
 from handle_weixin import login
 app = Flask(__name__)
 app.config.from_object(config)
-
 stuInfo={}
 # 绑定接口
 @app.route("/dormitoryHelper/api/v1.0/school_bind/<object>", methods=['GET', 'POST'])
