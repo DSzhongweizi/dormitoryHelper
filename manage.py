@@ -26,7 +26,7 @@ def Login(object):
     if(object == 'teacher'):
         pass
     elif(object == 'student'):
-        return  login.getOpenID()# 返回数据给前端
+        return  login.getOpenID()
 #人脸识别操作
 @app.route("/dormitoryHelper/api/v1.0/face_recognition/<object>", methods=['GET', 'POST'])
 def faceRecognition(object):
@@ -56,23 +56,21 @@ def Insert(database,object):
 # # 更新接口
 @app.route("/dormitoryHelper/api/v1.0/update/<database>/<object>", methods=['GET', 'POST'])
 def Update(database,object):
-    enclosure=request.form['enclosure']
     if(database == 'students'):
-        return update.update_stuInfo(object,enclosure)
+        return update.update_stuInfo(object)
     elif(database =='teachers'):
         return update.update_teacherInfo(object)
     elif(database == 'images'):
-        return update.update_image(object,enclosure)
+        return update.update_image(object)
 
 # 查询接口
 @app.route("/dormitoryHelper/api/v1.0/query/<database>/<object>", methods=['GET', 'POST'])
 def Query(database,object):
-    enclosure = request.form['enclosure']
     if (database == 'students'):
-        return query.query_stuInfo(object, enclosure)
+        return query.query_stuInfo(object)
     elif(database == 'teachers'):
         return query.query_teaInfo(object)
     elif (database == 'images'):
-        return query.query_image(object, enclosure)
+        return query.query_image(object)
 if __name__ == '__main__':
     app.run()

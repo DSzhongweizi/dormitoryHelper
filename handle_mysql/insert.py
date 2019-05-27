@@ -9,11 +9,10 @@ def insert_stuInfo(stuInfo,object):
     # 使用cursor()方法获取操作游标
     cursor = db.cursor()
     if(object =='stuInfo'):
-        enclosure=request.form['enclosure']
         # SQL 插入语句(id, name, academy, grade, major, class, campus, phone, address)
-        sql = "INSERT INTO %s" % enclosure + " VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s','%s','%s','%s')"%\
-                (stuInfo['id'],stuInfo['name'],stuInfo['academy'],stuInfo['grade'],stuInfo['major'],stuInfo['class'],
-                stuInfo['campus'],"","", 0, stuInfo['img'],0,"","")
+        sql = "INSERT INTO stuInfo VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s','%s','%s', '%s', '%s', '%s','%s','%s','%s','%s')"%\
+                (stuInfo['id'],stuInfo['name'],stuInfo['grade'],stuInfo['academy'],"","",stuInfo['avatars'],"","",
+                0, 0,stuInfo['major'],stuInfo['class'],stuInfo['campus'],"","")
     return assistFun(db, cursor, sql)
 def insert_teaInfo(object):
     db = pymysql.connect("148.70.98.130", "root", "00544", "teachers", charset='utf8')

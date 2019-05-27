@@ -7,7 +7,7 @@ def add_user(stuInfo,enclosure,access_token):
         'user_id':stuInfo['id'],
         'group_id':'stu_'+enclosure,
         'image_type':'BASE64',
-        'image':stuInfo['img'],
+        'image':stuInfo['avatars'],
         'user_info':stuInfo['name']
     }
     response=requests.post(url=url,data=data)

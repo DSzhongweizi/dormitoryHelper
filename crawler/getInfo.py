@@ -23,7 +23,7 @@ def get_stuInfo(s):
         f.close()
         with open(path + "\img.png", "rb") as f:  # 转为二进制格式
             base64_data = base64.b64encode(f.read())  # 使用base64进行加密
-            info['img'] = str(base64_data)[2:-3]  # 去掉前导二进制符号和最后面的两个等号，防止前端json.parse解析失败
+            info['avatars'] = str(base64_data)[2:-3]  # 去掉前导二进制符号和最后面的两个等号，防止前端json.parse解析失败
         return json.dumps(info,ensure_ascii=False),201
     else:
         return "false"
