@@ -48,6 +48,8 @@ def Insert(database,object):
         return insert.insert_stuInfo(json.loads(stuInfo[0]),object)  # 数据库操作
     elif(database =='teachers'):
         return insert.insert_teaInfo(object)
+    elif(database =='images'):
+        return insert.insert_imgInfo(object)
 # 删除接口
 # @app.route("/dormitoryHelper/api/v1.0/delete/<object>/<info>/<keyMysql>", methods=['GET', 'POST'])
 # def Delete(object,info,enclosure):

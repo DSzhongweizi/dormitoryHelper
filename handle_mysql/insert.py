@@ -24,6 +24,13 @@ def insert_teaInfo(object):
         enclosure = request.form['enclosure']
         sql = "INSERT INTO teachers VALUES('%s', '%s', '%s','%s')"%(id,grade,academy,enclosure)
     return assistFun(db, cursor, sql)
+def insert_imgInfo(object):
+    db = pymysql.connect("148.70.98.130", "root", "00544", "images", charset='utf8')
+    cursor = db.cursor()
+    if(object == 'addressID'):
+        addressID=request.form['addressID']
+        sql = "INSERT INTO dorImg VALUES('%s', '%s', '%s','%s','%s', '%s', '%s','%s','%s')" %(addressID,"","","","","",0,0,0)
+    return assistFun(db, cursor, sql)
 def assistFun(db,cursor,sql):
     try:
         cursor.execute(sql)
