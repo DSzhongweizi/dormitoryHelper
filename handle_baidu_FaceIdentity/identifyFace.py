@@ -11,6 +11,6 @@ def identify(id,stuImage,enclosure,access_token):
     }
     response=requests.post(url=url,data=data)
     if(response.json()['result']['user_list'][0]['score']>=75):
-        return "true"
+        return response.json()['result']['user_list'][0]['user_info']
     else:
         return  "false"

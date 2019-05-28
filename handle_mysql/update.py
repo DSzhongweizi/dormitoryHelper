@@ -23,6 +23,11 @@ def update_stuInfo(object):
         addressID = request.form['addressID']
         print(addressID)
         sql = "UPDATE stuInfo SET addressID=%s WHERE id=%s" % (addressID, id)
+    elif (object == 'historyRecord'):
+        historyRecord = request.form['historyRecord']
+        print(historyRecord)
+        print("---------------------")
+        sql = "UPDATE stuInfo SET historyRecord='%s' WHERE id=%s" % (historyRecord, id)
     elif (object == 'openid'):
         session_key=request.form['session_key']
         openid = request.form['openid']

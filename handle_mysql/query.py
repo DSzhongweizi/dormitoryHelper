@@ -73,6 +73,24 @@ def query_stuInfo(object):
             print(e.args)
             db.close()
             return "false"
+    elif (object == 'historyRecord'):
+        id=request.form['id']
+        historyRecord={}
+        sql = "SELECT * FROM stuInfo WHERE id=%s" % id
+        try:
+            cursor.execute(sql)
+            results = cursor.fetchall()
+            # stuInfos = [] # 局部变量的好处
+            for row in results:
+                # stuInfo = {}  # 局部变量的好处
+                historyRecord.update(historyRecord=row[11])
+            db.close()
+            return json.dumps(historyRecord)
+        except Exception as e:
+            db.rollback()
+            print(e.args)
+            db.close()
+            return "false"
 def query_teaInfo(object):
     db = pymysql.connect("148.70.98.130", "root", "00544", "teachers", charset='utf8')
     cursor = db.cursor()
