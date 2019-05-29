@@ -67,7 +67,7 @@ def query_stuInfo(object):
             if(len(stuInfo)>0):
                 return json.dumps(stuInfo)
             else:
-                return 'false'
+                return "false"
         except Exception as e:
             db.rollback()
             print(e.args)
