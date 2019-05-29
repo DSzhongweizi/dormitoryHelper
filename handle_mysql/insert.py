@@ -10,8 +10,8 @@ def insert_stuInfo(stuInfo,object):
     cursor = db.cursor()
     if(object =='stuInfo'):
         # SQL 插入语句(id, name, academy, grade, major, class, campus, phone, address)
-        sql = "INSERT INTO stuInfo VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s','%s','%s', '%s', '%s', '%s', '%s','%s','%s','%s','%s')"%\
-                (stuInfo['id'],stuInfo['name'],stuInfo['grade'],stuInfo['academy'],"","",stuInfo['avatars'],"","",
+        sql = "INSERT INTO stuInfo VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s','%s', '%s', '%s', '%s', '%s','%s','%s','%s','%s')"%\
+                (stuInfo['id'],stuInfo['name'],stuInfo['grade'],stuInfo['academy'],"",stuInfo['avatars'],"","",
                 0, 0,"",stuInfo['major'],stuInfo['class'],stuInfo['campus'],"","")
     return assistFun(db, cursor, sql)
 def insert_teaInfo(object):

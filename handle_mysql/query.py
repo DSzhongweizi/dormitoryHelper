@@ -6,8 +6,8 @@ def query_stuInfo(object):
     db = pymysql.connect("148.70.98.130", "root", "00544", "students", charset='utf8')
     cursor = db.cursor()
     if(object == 'bedmakerStatus'):
-        dormitory=request.form['dormitory']
-        sql = "SELECT * FROM stuInfo WHERE dormitory='%s'" % dormitory
+        addressID=request.form['addressID']
+        sql = "SELECT * FROM stuInfo WHERE addressID='%s'" % addressID
         try:
             cursor.execute(sql)
             results = cursor.fetchall()
@@ -59,10 +59,10 @@ def query_stuInfo(object):
                 stuInfo.update(grade=row[2])
                 stuInfo.update(academy=row[3])
                 stuInfo.update(phone=row[4])
-                stuInfo.update(avatars=str(row[6], encoding="utf-8"))
-                stuInfo.update(addressID=row[7])
-                stuInfo.update(address=row[8])
-                stuInfo.update(bedmakerStatus=row[9])
+                stuInfo.update(avatars=str(row[5], encoding="utf-8"))
+                stuInfo.update(addressID=row[6])
+                stuInfo.update(address=row[7])
+                stuInfo.update(bedmakerStatus=row[8])
             db.close()
             if(len(stuInfo)>0):
                 return json.dumps(stuInfo)
@@ -83,9 +83,12 @@ def query_stuInfo(object):
             # stuInfos = [] # 局部变量的好处
             for row in results:
                 # stuInfo = {}  # 局部变量的好处
-                historyRecord.update(historyRecord=row[11])
+                historyRecord.update(historyRecord=row[10])
             db.close()
-            return json.dumps(historyRecord)
+            if(len(historyRecord['historyRecord'])>0):
+                return json.dumps(historyRecord)
+            else:
+                return "false"
         except Exception as e:
             db.rollback()
             print(e.args)

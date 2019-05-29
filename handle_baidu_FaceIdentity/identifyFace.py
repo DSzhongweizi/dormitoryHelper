@@ -10,6 +10,7 @@ def identify(id,stuImage,enclosure,access_token):
         'group_id_list':'stu_'+enclosure,
     }
     response=requests.post(url=url,data=data)
+    print(response.json())
     try:
         if(response.json()['result']['user_list'][0]['score']>=75):
             return response.json()['result']['user_list'][0]['user_info']
